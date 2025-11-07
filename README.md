@@ -1,3 +1,13 @@
+PROJECT DEMO LINK: https://collaborative-canvas-demo.onrender.com/
+
+AUTHOR:
+  LAKKOJU SUSHANTH
+  Email: sushanthlakkoju66@gmail.com
+  Aspiring Web Developer
+  LinkedIn Profile Link: https://www.linkedin.com/in/sushanth-lakkoju-ba308525b/
+  Github Profile: https://github.com/sushanth645
+
+
 REAL-TIME COLLABORATIVE DRAWING CURVE
   A multi-user collaborative drawing app built using Node.js, Socket.io, and HTML5 Canvas — allowing multiple users to draw together in real time on a shared canvas.
 
@@ -70,11 +80,6 @@ TESTING WITH MULTIPLE USERS:
 
 Time spent on the project: 3 days.
 
-AUTHOR:
-  LAKKOJU SUSHANTH
-  Aspiring Web Developer
-  LinkedIn Profile Link: https://www.linkedin.com/in/sushanth-lakkoju-ba308525b/
-  Github Profile: https://github.com/sushanth645
 
 
 
