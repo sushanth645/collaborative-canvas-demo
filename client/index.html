@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collaborative Canvas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="toggle-toolbar" class="tool">
+  <span class="tool-icon">☰</span>
+    </button>
+
+    <div id="toolbar">
+       <div class="tool-group">
+        <button id="brush" class="tool active">
+          <span class="tool-icon">🖌️</span>
+          <span class="tool-label">Brush</span>
+        </button>
+        <button id="eraser" class="tool">
+          <span class="tool-icon">🧽</span>
+          <span class="tool-label">Eraser</span>
+        </button>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="tool-group">
+        <label class="control-label">Color</label>
+        <div id="color-palette">
+          <div class="color-block" data-color="#000000" style="background: #000000;" title="Black"></div>
+          <div class="color-block" data-color="#FF0000" style="background: #FF0000;" title="Red"></div>
+          <div class="color-block" data-color="#00FF00" style="background: #00FF00;" title="Green"></div>
+          <div class="color-block" data-color="#0000FF" style="background: #0000FF;" title="Blue"></div>
+          <div class="color-block" data-color="#FFFF00" style="background: #FFFF00;" title="Yellow"></div>
+          <div class="color-block" data-color="#FF00FF" style="background: #FF00FF;" title="Magenta"></div>
+          <div class="color-block" data-color="#00FFFF" style="background: #00FFFF;" title="Cyan"></div>
+          <div class="color-block" data-color="#FFA500" style="background: #FFA500;" title="Orange"></div>
+          <div class="color-block" data-color="#800080" style="background: #800080;" title="Purple"></div>
+          <div class="color-block" data-color="#FFC0CB" style="background: #FFC0CB;" title="Pink"></div>
+          <div class="color-block" data-color="#8B4513" style="background: #8B4513;" title="Brown"></div>
+          <div class="color-block" data-color="#808080" style="background: #808080;" title="Gray"></div>
+        </div>
+        <input type="color" id="color" value="#000000" style="display: none;" />
+      </div>
+      <div class="separator"></div>
+      <div class="tool-group">
+        <label class="control-label">Width: <span id="width-value">4</span>px</label>
+        <input type="range" id="width" min="1" max="30" value="4" />
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="tool-group actions">
+        <button id="clear" class="action-btn clear-btn">
+          <span class="btn-icon">🗑️</span>
+          <span class="btn-label">Clear</span>
+        </button>
+        <button id="undo" class="action-btn">
+          <span class="btn-icon">↶</span>
+          <span class="btn-label">Undo</span>
+        </button>
+        <button id="redo" class="action-btn">
+          <span class="btn-icon">↷</span>
+          <span class="btn-label">Redo</span>
+        </button>
+      </div>
+    </div>
+    <div id="users"></div>
+    <canvas id="canvas"></canvas>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="websocket.js"></script>
+    <script src="canvas.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
