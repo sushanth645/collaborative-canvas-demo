@@ -40,7 +40,6 @@ PROJECT STRUCTURE:
 ├── data/
 │   └── drawing.json         # Saved canvas state
 ├── package.json
-├── Procfile                 # For deployment (Heroku)
 ├── README.md
 └── ARCHITECTURE.md          # System design explanation
 
