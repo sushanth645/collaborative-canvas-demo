@@ -15,16 +15,14 @@ toggleBtn.addEventListener("click", () => {
   toolbar.classList.toggle("visible");
 });
 
-// --- Tool buttons ---
+// Tools
 const brushBtn = document.getElementById("brush");
 const eraserBtn = document.getElementById("eraser");
 
-      // --- Color palette setup ---
       const colorBlocks = document.querySelectorAll('.color-block');
       const hiddenColorInput = document.getElementById('color');
       let selectedColor = '#000000';
 
-      // Set first color as active by default
       colorBlocks[0].classList.add('active');
 
       colorBlocks.forEach(block => {
@@ -33,7 +31,6 @@ const eraserBtn = document.getElementById("eraser");
           selectedColor = color;
           hiddenColorInput.value = color;
           
-          // Update active state
           colorBlocks.forEach(b => b.classList.remove('active'));
           block.classList.add('active');
         });
@@ -93,7 +90,7 @@ function redrawAll() {
   allStrokes.forEach(drawStroke);
 }
 
-// ================= DRAWING LOGIC =================
+// DRAWING 
 
 canvas.addEventListener("mousedown", (e) => {
   drawing = true;
@@ -123,7 +120,7 @@ canvas.addEventListener("mousemove", (e) => {
 canvas.addEventListener("mouseup", () => (drawing = false));
 canvas.addEventListener("mouseleave", () => (drawing = false));
 
-// ================= BUTTON HANDLERS =================
+//  BUTTONS
 
 document.getElementById("clear").addEventListener("click", () => {
   allStrokes = [];
@@ -140,7 +137,7 @@ document.getElementById("redo").addEventListener("click", () => {
 });
 
 
-// ================= SOCKET EVENT HANDLERS =================
+//SOCKET EVENT HANDLERS
 
 socket.on("draw", (data) => {
   drawStroke(data);
@@ -158,8 +155,7 @@ socket.on("history", (historyData) => {
   redrawAll();
 });
 
-// ================= CURSOR SYNC =================
-
+//CURSOR 
 socket.on("cursor", (data) => {
   const { userId, color, pos } = data;
   if (!cursors[userId]) {
@@ -169,27 +165,14 @@ socket.on("cursor", (data) => {
     document.body.appendChild(el);
     cursors[userId] = el;
   }
-  const toolbar = document.getElementById("toolbar");
-  const toolbarRect = toolbar.getBoundingClientRect();
-
-  const offsetTop = toolbarRect.bottom;  // distance from top of screen to bottom of toolbar
-  const offsetLeft = toolbarRect.right;  // for vertical toolbar on small screens
-
   const el = cursors[userId];
-
-  // Check if toolbar is horizontal or vertical
-  if (window.innerWidth > 768) {
-    // Desktop: toolbar on top
-    el.style.left = `${pos.x}px`;
-    el.style.top = `${pos.y + offsetTop}px`;
-  } else {
-    // Mobile: toolbar on left side
-    el.style.left = `${pos.x + offsetLeft}px`;
-    el.style.top = `${pos.y}px`;
-  }
+  const canvasRect = canvas.getBoundingClientRect();
+  el.style.left = `${canvasRect.left + pos.x}px`;
+  el.style.top = `${canvasRect.top + pos.y}px`;
 });
 
-// --- Cursor removal when a user disconnects ---
+
+// Cursor removal when a user disconnects 
 socket.on("removeCursor", ({ userId }) => {
   if (cursors[userId]) {
     cursors[userId].remove();

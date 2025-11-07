@@ -3,7 +3,7 @@ const path = require("path");
 
 class DrawingState {
   constructor() {
-    this.userHistories = {}; // { userId: [strokes] }
+    this.userHistories = {};
     this.savePath = path.join(__dirname, "../data/drawing.json");
     this.load();
   }
@@ -26,8 +26,6 @@ class DrawingState {
 
   redo(userId) {
   if (!this.userHistories[userId]) return;
-
-  // Maintain a redo stack per user
   if (!this.redoStacks) this.redoStacks = {};
   if (!this.redoStacks[userId]) this.redoStacks[userId] = [];
 

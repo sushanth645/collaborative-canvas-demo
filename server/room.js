@@ -13,17 +13,15 @@ const colorPalette = [
 
 const usedColors = new Set();
 
-// Assign unique color
 function getUniqueColor() {
   const available = colorPalette.find(c => !usedColors.has(c));
   if (available) {
     usedColors.add(available);
     return available;
   }
-  return "#" + Math.floor(Math.random() * 16777215).toString(16); // fallback
+  return "#" + Math.floor(Math.random() * 16777215).toString(16); 
 }
 
-// Release color when user leaves
 function releaseColor(color) {
   if (usedColors.has(color)) usedColors.delete(color);
 }
@@ -36,18 +34,15 @@ function setupCanvasHandlers(io, socket) {
   users[socket.id] = { id: userId, name, color };
   console.log(`${name} connected`);
 
-  // Send existing canvas + users to new client
   io.emit("users", Object.values(users));
   socket.emit("history", state.getCombinedHistory());
 
-  // Draw handler
   socket.on("draw", (data) => {
     const stroke = { ...data, userId };
-    state.addStroke(userId, stroke);  // ✅ pass userId correctly
+    state.addStroke(userId, stroke);
     socket.broadcast.emit("draw", stroke);
   });
 
-  // Undo only user’s strokes
   socket.on("undo", () => {
     state.undo(userId);
     io.emit("history", state.getCombinedHistory());
@@ -60,18 +55,15 @@ function setupCanvasHandlers(io, socket) {
   });
 
 
-  // Clear only user’s strokes
   socket.on("clear", () => {
     state.clear();       
     io.emit("clear");
   });
 
-  // Cursor updates
   socket.on("cursor", (pos) => {
     io.emit("cursor", { userId, color, pos });
   });
 
-  // Disconnect cleanup
   socket.on("disconnect", () => {
     const removedUser = users[socket.id];
     console.log(`${name} disconnected`);

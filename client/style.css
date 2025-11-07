@@ -50,7 +50,6 @@ body {
     box-sizing: border-box;
   }
 
-  /* Scrollbar Styling */
   #toolbar::-webkit-scrollbar {
     width: 6px;
   }
@@ -62,12 +61,10 @@ body {
     background: transparent;
   }
 
-  /* Show toolbar */
   #toolbar.visible {
     left: 0;
   }
 
-  /* Stack vertically */
   .tool-group {
     flex-direction: column;
     align-items: center;
@@ -80,12 +77,10 @@ body {
     margin-left: 0;
   }
 
-  /* Hide separators on mobile */
   .separator {
     display: none;
   }
 
-  /* Compact look */
   .tool-label,
   .btn-label,
   .control-label {
@@ -101,7 +96,6 @@ body {
     padding: 8px;
   }
 
-  /* Color palette inside sidebar */
   #color-palette {
     display: flex;
     flex-direction: column;
@@ -118,20 +112,6 @@ body {
     border-radius: 8px;
   }
 
-  /* Background dim overlay */
-  #overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 100;
-  }
-
-  #overlay.active {
-    display: block;
-  }
-
-  /* Canvas full-screen */
   canvas {
     position: absolute;
     top: 0;
@@ -144,16 +124,15 @@ body {
     right: 10px;
   }
 
-  /* Adjust width slider for mobile */
   #width {
     width: 60px;
   }
 }
 
-/* ============= DESKTOP STYLES (769px and above) ============= */
+/* DESKTOP TOOLBAR*/
 @media (min-width: 769px) {
   #toggle-toolbar {
-    display: none; /* Hide menu button on desktop */
+    display: none;
   }
 
   #toolbar {
@@ -208,7 +187,6 @@ body {
   }
 }
 
-/* ============= COMMON STYLES (all screen sizes) ============= */
 #users {
   position: fixed;
   right: 10px;
